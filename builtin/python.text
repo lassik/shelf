@@ -1,0 +1,13 @@
+*                      a = a * b
++                      a = a + b
+-                      a = a - b
+<                      a = a < b
+=                      a = a == b
+>                      a = a > b
+
+string-count-bytes     a = len(str.encode(a, 'utf-8'))
+string-count-lines     a = len(str.splitlines(a))
+string-downcase        a = str.lower(a)
+string-null?           a = len(a) == 0
+string-upcase          a = str.upper(a)
+string=?               a = a == b

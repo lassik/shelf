@@ -1,0 +1,35 @@
+*                      a=$(expr "$a" '*' "$b")
++                      a=$(expr "$a"  +  "$b")
+-                      a=$(expr "$a"  -  "$b")
+<                      a=$(expr "$a" -lt "$b")
+=                      a=$(expr "$a" -eq "$b")
+>                      a=$(expr "$a" -gt "$b")
+
+list-length            a=$(printf '%s\n' "$a" | wc -l | tr -dC '[0-9]')
+list-reverse           a=$(printf '%s\n' "$a" | sed '1!G;h;$!d')
+
+list-null?             test -z "$a"
+
+string-downcase        a=$(printf '%s' "$a" | tr '[:upper:]' '[:lower:]')
+string-upcase          a=$(printf '%s' "$a" | tr '[:lower:]' '[:upper:]')
+string-count-bytes     a=$(printf '%s' "$a" | wc -c | tr -dC '[0-9]')
+string-count-lines     a=$(printf '%s\n' "$a" | wc -l | tr -dC '[0-9]')
+
+string-null?           test -z "$a"
+string=?               test "$a" = "$b" && a=t || a=''
+
+newline                printf '\n'
+write-line             printf '%s\n' "$a"
+write-string           printf '%s' "$a"
+
+command-args           a=$@
+command-name           a=$0
+exit                   exit "$a"
+parent-pid             a=$PPID
+pid                    a=$$
+
+get-environment-variable   eval "a=\${$a}"
+
+delete-directory-tree      rm -rf "$a"
+delete-empty-directory     rmdir "$a"
+delete-file                rm -f "$a"

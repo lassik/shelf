@@ -1,0 +1,4 @@
+delete-file            (delete-file a)
+string-count-bytes     (set! a (bytevector-length (string->utf8 a)))
+string-null?           (set! a (= 0 (string-length a)))
+string=?               (set! a (string=? a b))

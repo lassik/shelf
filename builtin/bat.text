@@ -1,0 +1,2 @@
+delete-directory-tree      deltree %a%
+delete-file                del /q %a%

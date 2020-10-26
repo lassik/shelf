@@ -1,0 +1,4 @@
+string-count-bytes     a = a.encode('utf-8').bytesize
+string-count-lines     a = a.lines.length
+string-downcase        a = a.downcase
+string-upcase          a = a.upcase
