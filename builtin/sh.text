@@ -2,11 +2,17 @@
 +                      a=$(expr "$a"  +  "$b")
 -                      a=$(expr "$a"  -  "$b")
 <                      a=$(expr "$a" -lt "$b")
+<=                     a=$(expr "$a" -le "$b")
 =                      a=$(expr "$a" -eq "$b")
 >                      a=$(expr "$a" -gt "$b")
+>=                     a=$(expr "$a" -ge "$b")
 
 list-length            a=$(printf '%s\n' "$a" | wc -l | tr -dC '[0-9]')
 list-reverse           a=$(printf '%s\n' "$a" | sed '1!G;h;$!d')
+list-ref               a=$(printf '%s\n' "$a" | head -n "$(expr "$b" + 1)" | tail -n 1)
+list-take              a=$(printf '%s\n' "$a" | head -n "$b")
+list-take-right        a=$(printf '%s\n' "$a" | tail -n "$b")
+list-drop              a=$(printf '%s\n' "$a" | tail -n +"$b")
 
 list-null?             test -z "$a"
 
@@ -24,6 +30,7 @@ write-string           printf '%s' "$a"
 
 command-args           a=$@
 command-name           a=$0
+current-directory      a=$PWD
 exit                   exit "$a"
 parent-pid             a=$PPID
 pid                    a=$$
@@ -33,3 +40,13 @@ get-environment-variable   eval "a=\${$a}"
 delete-directory-tree      rm -rf "$a"
 delete-empty-directory     rmdir "$a"
 delete-file                rm -f "$a"
+
+directory-names            ls -1A "$a"
+
+block-device?              test -b "$a"
+character-device?          test -c "$a"
+device?                    test -b "$a" || test -c "$a"
+file-exists?               test -e "$a"
+terminal-file-descriptor?  test -t "$a"
+
+append-to-file             printf '%s' "$b" >>"$a"
